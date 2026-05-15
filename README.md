@@ -1,4 +1,4 @@
-# ModelSim RTL Design and Verification Repository
+# Digital Design and Verification Platform
 
 ## English
 
