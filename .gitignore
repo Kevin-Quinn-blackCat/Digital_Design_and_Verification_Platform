@@ -1,0 +1,12 @@
+# 1. 忽略所有带有 *.private 后缀的文件夹及其内容
+**/*.private/
+
+# 2. 忽略每个工程下的 build 文件夹内容
+**/build/
+
+# 3. 忽略每个工程下的 output 文件夹内容
+**/output/
+
+# 4. 忽略每个工程 workspace 目录下的 *.ini 文件和 transcript 文件
+**/workspace/*.ini
+**/workspace/transcript
