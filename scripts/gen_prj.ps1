@@ -1,6 +1,6 @@
 ﻿# 1. 初始化并拷贝基础模板
-$sourcePath = "..\..\exp_prj_lib\New"
-$tempPath = ".\New"
+$sourcePath = "..\..\exp_lib\exp_prj_lib\New_prj"
+$tempPath = ".\New_prj"
 
 if (Test-Path $sourcePath) {
     Copy-Item -Path $sourcePath -Destination $tempPath -Recurse -Force
