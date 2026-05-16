@@ -1,8 +1,8 @@
 /**
- * File         : 0FILE_NAME0.v/sv
- * Author list  : Kevin_Quinn
+ * File         : {{FILE_NAME}}.{{RTL_LANGUAGE}}
+ * Author list  : {{NAME}}
  * Type         : Digital Design
- * tool         : 0None/Vivado/QuartusII0
+ * tool         : {{TB_TOOL}}
  * Description  : 
  * 				1. 0Insert_short_description_here0
  * 				2. 0Insert_short_description_here0
@@ -10,8 +10,8 @@
  * 
  * Revision History:
  * -----------------------------------------------------------------------------
- * Date          By        Version     Description
- * 2026-XX-XX    kq        v0.0        Created
+ * Date          By             Version     Description
+ * {{DATE}}      {{NAME}}       v0.0        Created
  * -----------------------------------------------------------------------------
  */
 
@@ -31,7 +31,7 @@
 ===*/
 
 
-module 0top0 (
+module {{FILE_NAME}} (
 	input  wire  sys_clk,
 	input  wire  sys_rst_n
 );

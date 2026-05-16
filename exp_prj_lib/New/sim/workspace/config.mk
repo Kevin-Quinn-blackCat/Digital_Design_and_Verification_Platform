@@ -1,5 +1,5 @@
 # 设计顶层模块名
-TOP_MODULE = top_tb
+TOP_MODULE = {{FILE_NAME}}_tb
 
 # 仿真时间
 SIM_TIME = 1ms

@@ -1,4 +1,4 @@
 .PHONY: gen
 
 gen:
-	cmd /c "..\\..\\scripts\\gen_prj.bat"
+	powershell -ExecutionPolicy Bypass -File "../../scripts/gen_prj.ps1"

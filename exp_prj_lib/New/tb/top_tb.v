@@ -1,9 +1,9 @@
 `timescale 1ns/1ns
 /**
- * File         : 0FILE_NAME0.v/sv
- * Author list  : Kevin_Quinn
+ * File         : {{FILE_NAME}}_tb.{{TB_LANGUAGE}}
+ * Author list  : {{NAME}}
  * Type         : Testbench
- * tool         : 0None/Vivado/Modelsim0
+ * tool         : {{RTL_TOOL}}
  * Description  : 
  * 				1. 0Insert_short_description_here0
  * 				2. 0Insert_short_description_here0
@@ -11,13 +11,13 @@
  * 
  * Revision History:
  * -----------------------------------------------------------------------------
- * Date          By        Version     Description
- * 2026-XX-XX    kq        v0.0        Created
+ * Date          By             Version     Description
+ * {{DATE}}      {{NAME}}       v0.0        Created
  * -----------------------------------------------------------------------------
  */
 
 
-module top_tb;
+module {{FILE_NAME}}_tb;
 
 
 /*======================== Parameter and Internal Signal =========================*/
