@@ -2,7 +2,7 @@
 TOP_MODULE = wave_gen_tb
 
 # 仿真时间
-SIM_TIME = 10ms
+SIM_TIME = 1ms
 
 # 库名称
 LIB_NAME = work
