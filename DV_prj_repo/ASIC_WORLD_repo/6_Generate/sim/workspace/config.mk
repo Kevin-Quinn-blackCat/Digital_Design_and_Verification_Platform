@@ -1,5 +1,5 @@
 # 设计顶层模块名
-TOP_MODULE = gene_tb
+TOP_MODULE = data_processor_tb
 
 # 仿真时间
 SIM_TIME = 1ms
