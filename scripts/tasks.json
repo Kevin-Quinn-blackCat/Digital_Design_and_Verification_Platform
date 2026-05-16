@@ -1,0 +1,28 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "ModelSim workspace",
+            "type": "shell",
+            // Windows 用户推荐使用 powershell 或 cmd
+            // Linux/macOS 用户推荐使用 bash 或 zsh
+            "command": "powershell", 
+            "options": {
+                "cwd": "${workspaceFolder}/sim/workspace"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true, // 自动将光标聚焦到终端，方便直接输入
+                "panel": "dedicated", // 为这个任务创建一个专属面板
+                "showReuseMessage": false,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
