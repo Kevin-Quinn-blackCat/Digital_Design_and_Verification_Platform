@@ -1,5 +1,10 @@
 # Digital Design and Verification Platform
 
+> [!CAUTION]
+> **注意：文档未及时同步更新。** 阅读时请对照仓库实际情况。
+> 
+> **Notice: Outdated Documentation.** Please cross-check information with the current state of the repository.
+
 ## English
 
 This repository provides a scripted file structure for digital RTL design and verification, with a focus on ModelSim-based simulation workflows.
