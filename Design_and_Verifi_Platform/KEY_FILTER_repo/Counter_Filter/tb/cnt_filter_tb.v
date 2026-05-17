@@ -15,15 +15,20 @@
  * 2026-15-13    KQ        v0.0        Created
  * 2026-15-13    KQ        v1.0        add basic logic
  * 2026-15-13    KQ        v1.0        Complete basic code
+ * 2026-15-17    KQ        v2.0        refactor: update verification platform implementation using current construction methods
  * -----------------------------------------------------------------------------
  */
 
+
 module cnt_filter_tb;
+
 
 /*======================== Parameter and Internal Signal =========================*/
 
-localparam integer CNT_STATE_NUM = 10;
+/*===Parameter===*/
+localparam CNT_STATE_NUM = 10;
 
+/*===Signal===*/
 reg  sys_clk;
 reg  sys_rst_n;
 reg  din;
@@ -32,6 +37,7 @@ wire dout;
 
 /*================================== Instantiation ===============================*/
 
+/*===DUT===*/
 cnt_filter # (
     .CNT_STATE_NUM(CNT_STATE_NUM)
 )
@@ -42,61 +48,75 @@ cnt_filter_inst (
     .dout(dout)
 );
 
+/*==================================== initial ====================================*/
 
-/*================================== Main Code ===================================*/
-
+/*===clk_gen===*/
 always #5 sys_clk = ~sys_clk;
 
+/*===init_sig===*/
+event init_sig;
+
 initial begin
+
+	// sig
 	sys_clk = 1'b1;
 	din <= 1'd0;
+
+	// rst
 	sys_rst_n <= 1'b0;
 	#40;
 	sys_rst_n <= 1'b1;
+	#40
+
+	// done
+	$display("+------------------------------------------------------------------------------+");
+	$display("|                         =====Simulation Start=====                           |");
+	$display("+------------------------------------------------------------------------------+");
+	-> init_sig;
 end
 
-initial begin
-	#50;
+/*==================================== event ======================================*/
 
-	$display("--Simulation Start!--");
-	$display("--change to 1 for 10--");
-	change(10, 1'b1);
-	$display("--change to 0 for 5--");
-	change(5, 1'b0);
-	$display("--change to 1 for 40--");
-	change(40, 1'b1);
-	$display("--change to 0 for 40--");
-	change(40, 1'b0);
-	$display("--change to 1 for 10--");
-	change(10, 1'b1);
-	$display("--change to 0 for 10--");
-	change(10, 1'b0);
-	$display("--change to 1 for 9--");
-	change(9, 1'b1);
-	$display("--change to 1 for 1--");
-	change(1, 1'b1);
-	$display("--Simulation Finish!--");
+`include "tb_event.vh"
 
-	$stop;
-end
+/*==================================== task =======================================*/
 
-task change(
-	input  integer i,
-	input  data
-);
+task automatic change;
+	input  integer i;
+	input          data;
 	begin
+		#1;
+		$display("--change to %b for %d--", data, i);
 		if (din == data) begin
-			repeat(i+1) @(posedge sys_clk) ;
+			repeat (i) @(posedge sys_clk);
 		end
 		else begin
-			din = ~din;
-			repeat(i+1) @(posedge sys_clk) ;
-			din = ~din;
+			din <= ~din;
+			repeat (i) @(posedge sys_clk);
+			din <= ~din;
 		end
-		
 	end
 endtask
 
+/*================================== Main Code ===================================*/
+
+/*===main_simulation_logic===*/
+initial begin
+	@(init_sig);
+	-> simulation_next;
+		change(10, 1'b1);
+		change(5, 1'b0);
+		change(40, 1'b1);
+		change(40, 1'b0);
+		change(10, 1'b1);
+		change(10, 1'b0);
+		change(9, 1'b1);
+		change(1, 1'b1);
+
+	-> simulation_stop;
+end
+
+/*=========================== Monitoring & Debug Logic ===========================*/
 always @(dout) begin
 	case (dout)
 		1'b1: $display("@%dns dout change to %b", $time,dout);
@@ -104,5 +124,6 @@ always @(dout) begin
 		default: $display("Error @%dns", $time);
 	endcase
 end
+
 
 endmodule
