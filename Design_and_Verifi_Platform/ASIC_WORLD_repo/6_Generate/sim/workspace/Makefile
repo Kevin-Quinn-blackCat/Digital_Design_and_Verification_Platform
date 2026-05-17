@@ -4,19 +4,19 @@ include config.mk
 SCRIPT_PATH = ../scripts/run.do
 CHECK_SCRIPT = ../scripts/check.do
 
-all: check
+all:
 
 # 命令行模式：执行完立即退出
-sim: clean
+sim:
 	vsim -c -do "do $(SCRIPT_PATH) $(TOP_MODULE) $(SIM_TIME) $(LIB_NAME); quit -f"
 
 # GUI 模式：执行完停留在界面
-gui: clean
+gui:
 	vsim -do "do $(SCRIPT_PATH) $(TOP_MODULE) $(SIM_TIME) $(LIB_NAME)"
 
 
 # 极速语法检查
-check: clean
+check:
 	@echo ----------------------------------------------------
 	@echo  Starting Syntax Check...
 	@echo ----------------------------------------------------

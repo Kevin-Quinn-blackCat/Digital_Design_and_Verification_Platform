@@ -1,6 +1,6 @@
 `timescale 1ns/1ns
 /**
- * File         : data_processor_tb.v
+ * File         : gene_tb.v
  * Author list  : KevinQuinn
  * Type         : Testbench
  * tool         : none
@@ -12,12 +12,12 @@
  * Revision History:
  * -----------------------------------------------------------------------------
  * Date          By             Version     Description
- * 2026-05-16      KevinQuinn       v0.0        Created
+ * 2026-05-17      KevinQuinn       v0.0        Created
  * -----------------------------------------------------------------------------
  */
 
 
-module data_processor_tb;
+module gene_tb;
 
 
 /*======================== Parameter and Internal Signal =========================*/
