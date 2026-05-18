@@ -6,7 +6,8 @@ module reverse #(
 );
 	genvar i;
 	generate
-    for (i = 0; i < WIDTH; i = i + 1) begin : REVERSE_BLOCK
+    for (i = 0; i < WIDTH; i = i + 1)
+	begin : REVERSE_BLOCK
         assign data_out[i] = data_in[WIDTH-1-i];
     end
 endgenerate

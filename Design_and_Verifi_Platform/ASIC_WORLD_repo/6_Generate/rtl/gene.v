@@ -7,7 +7,6 @@
  * 				1.OP_MODE == 0 Ripple Carry Adder
  * 				2.OP_MODE == 1 Bitwise NOT
  * 				3.OP_MODE == 2 Bit-reversal
- * 
  */
 
 
@@ -34,17 +33,26 @@ wire  			 _cout;
 
 /*================================== Main Code ===================================*/
 generate
-	if (PIPELINED) begin : PIPE
+	if (PIPELINED) begin : PIPELINED
+		/*===sig===*/
 		reg [WIDTH-1:0]  _data_out_reg;
 		reg  			 _cout_reg;
+
+		/*===logic===*/
+		// reg
 		always @(posedge sys_clk) begin
 			_data_out_reg <= _data_out;
 			_cout_reg     <= _cout;
 		end
+
+		// output
 		assign data_out = _data_out_reg;
 		assign cout = _cout_reg;
+
 	end
-	else begin : NO_PIPE
+
+	else begin : NO_PIPELINED
+		/*===logic===*/
 		assign data_out = _data_out;
 		assign cout = _cout;
 	end
@@ -55,7 +63,8 @@ endgenerate
 generate
 	case (OP_MODE)
 		0 : begin : ADDER
-			Ripple_Carry_Adder # (
+		/*===inst===*/
+		Ripple_Carry_Adder # (
 			.WIDTH(WIDTH)
 		) Ripple_Carry_Adder_inst (
 			.a(a),
@@ -65,14 +74,22 @@ generate
 			.cout(_cout)
 		);
 		end
+
 		1 : begin : NOT
+			/*===logic===*/
 			assign _data_out = (cin_mux) ? (~b) : (~a);
 			assign _cout = 1'b0;
 		end
+
 		2 : begin : REVERSE
+			/*===sig===*/
 			wire [WIDTH-1:0] data_in;
+
+			/*===logic===*/
 			assign data_in = (cin_mux) ? (b) : (a);
 			assign _cout = 1'b0;
+
+			/*===inst===*/
 			reverse # (
 				.WIDTH(WIDTH)
 			)
@@ -81,7 +98,9 @@ generate
 			.data_out(_data_out)
 			);
 		end
+
 		default: begin : NONE
+			/*===logic===*/
 			assign _data_out = 1'b0;
 			assign _cout = 1'b0;
 		end

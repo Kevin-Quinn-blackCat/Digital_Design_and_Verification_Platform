@@ -24,7 +24,8 @@ assign cout = carry[WIDTH];
 
 genvar i;
 generate
-	for (i = 0; i < WIDTH; i = i + 1) begin : FULL_ADDER
+	for (i = 0; i < WIDTH; i = i + 1)
+	begin : FULL_ADDER
 		full_adder  full_adder_inst (
 			.a(a[i]),
 			.b(b[i]),
