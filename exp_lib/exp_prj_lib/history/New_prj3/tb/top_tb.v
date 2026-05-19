@@ -1,6 +1,6 @@
 `timescale 1ns/1ns
 /**
- * File         : {{FILE_NAME}}_tb.v
+ * File         : {{FILE_NAME}}_tb.{{TB_LANGUAGE}}
  * Author list  : {{NAME}}
  * Type         : Testbench
  * tool         : {{RTL_TOOL}}
@@ -84,7 +84,7 @@ end
 /*===main_simulation_logic===*/
 initial begin
 	@(init_sig);
-	-> simulation_next;
+	
 
 	-> simulation_stop;
 end

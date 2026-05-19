@@ -1,8 +1,8 @@
 /**
- * File         : {{FILE_NAME}}.v
- * Author list  : {{NAME}}
+ * File         : new.v
+ * Author list  :  
  * Type         : Digital Design
- * tool         : {{TB_TOOL}}
+ * tool         : Modelsim
  * Description  : 
  * 				1. 0Insert_short_description_here0
  * 				2. 0Insert_short_description_here0
@@ -11,7 +11,7 @@
  * Revision History:
  * -----------------------------------------------------------------------------
  * Date          By             Version     Description
- * {{DATE}}      {{NAME}}       v0.0        Created
+ * 2026-05-19              v0.0        Created
  * -----------------------------------------------------------------------------
  */
 
@@ -31,7 +31,7 @@
 ===*/
 
 
-module {{FILE_NAME}} (
+module new (
 	input  wire  sys_clk,
 	input  wire  sys_rst_n
 );

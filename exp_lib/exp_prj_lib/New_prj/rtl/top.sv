@@ -1,5 +1,5 @@
 /**
- * File         : {{FILE_NAME}}.v
+ * File         : {{FILE_NAME}}.sv
  * Author list  : {{NAME}}
  * Type         : Digital Design
  * tool         : {{TB_TOOL}}

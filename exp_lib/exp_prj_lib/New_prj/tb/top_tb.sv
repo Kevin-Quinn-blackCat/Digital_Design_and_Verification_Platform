@@ -1,6 +1,6 @@
 `timescale 1ns/1ns
 /**
- * File         : {{FILE_NAME}}_tb.v
+ * File         : {{FILE_NAME}}_tb.sv
  * Author list  : {{NAME}}
  * Type         : Testbench
  * tool         : {{RTL_TOOL}}
@@ -71,7 +71,7 @@ end
 
 /*==================================== event ======================================*/
 
-`include "tb_event.vh"
+`include "tb_event.svh"
 
 /*==================================== task =======================================*/
 
@@ -83,7 +83,7 @@ end
 
 /*===main_simulation_logic===*/
 initial begin
-	@(init_sig);
+	wait(init_sig.triggered);
 	-> simulation_next;
 
 	-> simulation_stop;

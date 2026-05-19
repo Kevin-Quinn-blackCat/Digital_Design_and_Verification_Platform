@@ -1,9 +1,9 @@
 `timescale 1ns/1ns
 /**
- * File         : {{FILE_NAME}}_tb.v
- * Author list  : {{NAME}}
+ * File         : new_tb.sv
+ * Author list  :  
  * Type         : Testbench
- * tool         : {{RTL_TOOL}}
+ * tool         : none
  * Description  : 
  * 				1. 0Insert_short_description_here0
  * 				2. 0Insert_short_description_here0
@@ -12,12 +12,12 @@
  * Revision History:
  * -----------------------------------------------------------------------------
  * Date          By             Version     Description
- * {{DATE}}      {{NAME}}       v0.0        Created
+ * 2026-05-19              v0.0        Created
  * -----------------------------------------------------------------------------
  */
 
 
-module {{FILE_NAME}}_tb;
+module new_tb;
 
 
 /*======================== Parameter and Internal Signal =========================*/
@@ -71,7 +71,7 @@ end
 
 /*==================================== event ======================================*/
 
-`include "tb_event.vh"
+`include "tb_event.svh"
 
 /*==================================== task =======================================*/
 
@@ -83,7 +83,7 @@ end
 
 /*===main_simulation_logic===*/
 initial begin
-	@(init_sig);
+	wait(init_sig.triggered);
 	-> simulation_next;
 
 	-> simulation_stop;
