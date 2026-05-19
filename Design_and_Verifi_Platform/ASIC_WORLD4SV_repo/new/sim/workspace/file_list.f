@@ -3,7 +3,7 @@
 +incdir+../../tb/include
 
 // 设计源码搜索路径
-../../rtl/*.{{RTL_LANGUAGE}}
+../../rtl/*.v
 
 // 测试源码搜索路径
-../../tb/*.{{TB_LANGUAGE}}
+../../tb/*.sv

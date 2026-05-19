@@ -58,11 +58,13 @@ $targetFiles = @(
     "$tempPath\sim\workspace\file_list.f"
 )
 
-# 替换字典（移除了 RTL_LANGUAGE 和 TB_LANGUAGE 的替换）
+# 替换字典（移除了  和  的替换）
 $replacements = @{
     "{{FILE_NAME}}"    = $FILE_NAME
     "{{RTL_TOOL}}"     = $RTL_TOOL
     "{{TB_TOOL}}"      = $TB_TOOL
+	"{{RTL_LANGUAGE}}" = $RTL_LANGUAGE
+	"{{TB_LANGUAGE}}"  = $TB_LANGUAGE
     "{{NAME}}"         = $NAME
     "{{DATE}}"         = $DATE
 }
