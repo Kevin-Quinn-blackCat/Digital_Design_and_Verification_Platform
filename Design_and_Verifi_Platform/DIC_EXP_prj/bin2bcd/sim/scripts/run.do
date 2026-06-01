@@ -33,26 +33,29 @@ vsim -voptargs="+acc" \
      -wlf $wave_dir/vsim.wlf \
      $lib_name.$top_module
 
-radix define MyDigitRadix {
-    7'h40 "V0"
-    7'h79 "V1"
-    7'h24 "V2"
-    7'h30 "V3"
-    7'h19 "V4"
-    7'h12 "V5"
-    7'h02 "V6"
-    7'h78 "V7"
-    7'h00 "V8"
-    7'h10 "V9" 
-    7'h7F "Empty" -color "cyan"
-    -default hex
-}
+# radix define MyDigitRadix {
+#     7'h40 "V0"
+#     7'h79 "V1"
+#     7'h24 "V2"
+#     7'h30 "V3"
+#     7'h19 "V4"
+#     7'h12 "V5"
+#     7'h02 "V6"
+#     7'h78 "V7"
+#     7'h00 "V8"
+#     7'h10 "V9" 
+#     7'h7F "Empty" -color "cyan"
+#     -default hex
+# }
+
 
 # 6. 添加波形 (如果是 GUI 模式则执行)
 # 在 ModelSim 中，用 [batch_mode] 检查是否为命令行模式
 if {[batch_mode] == 0} {
     add wave -position insertpoint sim:/$top_module/*
 }
+
+do wave.do
 
 # 7. 运行仿真
 run $sim_time
