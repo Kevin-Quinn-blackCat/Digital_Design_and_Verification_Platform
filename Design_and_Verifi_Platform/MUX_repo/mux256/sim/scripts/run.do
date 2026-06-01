@@ -10,6 +10,7 @@ set lib_name   $3
 set build_dir  "../build"
 set log_dir    "../output/log"
 set wave_dir   "../output/wave"
+set wave_set   "../scripts"
 
 # 2. 创建必要的目录
 if {![file exists $build_dir]} { file mkdir $build_dir }
@@ -38,6 +39,8 @@ vsim -voptargs="+acc" \
 if {[batch_mode] == 0} {
     add wave -position insertpoint sim:/$top_module/*
 }
+
+do $wave_set/base_wave.do $top_module
 
 # 7. 运行仿真
 run $sim_time
