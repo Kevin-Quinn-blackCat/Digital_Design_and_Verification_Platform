@@ -2,7 +2,7 @@
  * File         : {{FILE_NAME}}.sv
  * Author list  : {{NAME}}
  * Type         : Digital Design
- * tool         : {{TB_TOOL}}
+ * tool         : {{RTL_TOOL}}
  * Description  : 
  * 				1. 0Insert_short_description_here0
  * 				2. 0Insert_short_description_here0
