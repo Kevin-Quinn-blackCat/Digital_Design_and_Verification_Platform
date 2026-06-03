@@ -26,9 +26,9 @@ module {{FILE_NAME}}_tb;
 localparam  CNT_MAX = 9;
 
 /*===Signal===*/
-reg  sys_clk;
-reg  sys_rst_n;
-wire [6:0] led;
+logic        sys_clk;
+logic        sys_rst_n;
+logic  [6:0] led;
 
 
 /*================================== Instantiation ===============================*/
@@ -83,7 +83,7 @@ end
 
 /*===main_simulation_logic===*/
 initial begin
-	wait(init_sig.triggered);
+	@(init_sig);
 	-> simulation_next;
 
 	-> simulation_stop;

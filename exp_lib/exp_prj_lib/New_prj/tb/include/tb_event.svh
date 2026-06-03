@@ -2,7 +2,7 @@
 event simulation_finish;
 initial begin
 	forever begin
-		wait(simulation_finish.triggered);
+		@(simulation_finish);
 		$display("+------------------------------------------------------------------------------+");
 		$display("|                        =====Simulation Finish=====                           |");
 		$display("+------------------------------------------------------------------------------+");
@@ -14,7 +14,7 @@ end
 event simulation_stop;
 initial begin
 	forever begin
-		wait(simulation_stop.triggered);
+		@(simulation_stop);
 		$display("+------------------------------------------------------------------------------+");
 		$display("|                          =====Simulation Stop=====                           |");
 		$display("+------------------------------------------------------------------------------+");
@@ -28,7 +28,7 @@ initial begin : SIM_NUM
 	integer sim_num;
 	sim_num <= 1;
 	forever begin 
-		wait(simulation_next.triggered);
+		@(simulation_next);
 		$display("+------------------------------------------------------------------------------+");
 		$display("|                          =====Simulation Next=====                           |");
 		$display("|                         =====Simulation No.%0d=====                          |", sim_num);
