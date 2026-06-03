@@ -11,13 +11,10 @@
  * Date          By             Version     Description
  * 2026-06-02      kq       v0.0        Created
  * 2026-06-02      kq       v1.0        Complete basic logic
- * 2026-06-03      kq       v2.0        add assert
+ * 2026-06-03      kq       v2.0        add assert : Found that an error occurs when sel is close to the clock frequency
+ * 2026-06-03      kq       v3.0        add Inte_filter
  * -----------------------------------------------------------------------------
  */
-
-/*===TIMING BOARD
-===*/
-
 
 module Clock_Switcher (
 	input  logic  clk0,
@@ -38,6 +35,19 @@ logic q1_reg2;
 logic en0;
 logic en1;
 
+logic _sel;
+
+/*================================== Instantiation ===============================*/
+
+Inte_filter # (
+    .CNT_STATE_NUM(100)
+)Inte_filter_inst (
+    .sys_clk(clk0),
+    .sys_rst_n(rst_n),
+    .din(sel),
+    .dout(_sel)
+);
+
 /*================================== Main Code ===================================*/
 /*===clk0的门控信号：只能在clk1除能后才能预备使能===*/
 // 在下降沿变化，确保把所有的高电平跑完才判断是否启动/关闭，确保后续由0开头
@@ -48,7 +58,7 @@ always_ff @(negedge clk0 or negedge rst_n) begin
 		q0_reg1 <= 1'b0;
 	end
 	else begin
-		q0_reg1 <= (~sel) & (~en1);
+		q0_reg1 <= (~_sel) & (~en1);
 	end
 end
 
@@ -71,7 +81,7 @@ always_ff @(negedge clk1 or negedge rst_n) begin
 		q1_reg1 <= 1'b0;
 	end
 	else begin
-		q1_reg1 <= sel & (~en0);
+		q1_reg1 <= _sel & (~en0);
 	end
 end
 
@@ -91,7 +101,6 @@ assign en1 = q1_reg2;
 
 assign clk_out = (en0 & clk0) | (en1 & clk1);
 
-
 /*=============================== SVA Verification ===============================*/
 /*===性质一：门控互斥：en0和en1不能同时开启===*/
 property clk_no_overlap;
@@ -107,7 +116,7 @@ else $error("Violation: en0 and en1 are both HIGH!");
 property sel0_to_sel1;
 	@(negedge clk0)
 	disable iff (!rst_n)
-	$rose(sel) |-> ##[1:3] !en0;
+	$rose(_sel) |-> ##[1:3] !en0;
 endproperty
 
 assert_deadlock0_release: assert property (sel0_to_sel1)
@@ -116,7 +125,7 @@ else $error("Violation: en0 not fall when sel changes");
 property sel1_to_sel0;
 	@(negedge clk1)
 	disable iff (!rst_n)
-	$fell(sel) |-> ##[1:3] !en1;
+	$fell(_sel) |-> ##[1:3] !en1;
 endproperty
 
 assert_deadlock1_release: assert property (sel1_to_sel0)
@@ -126,6 +135,6 @@ else $error("Violation: en1 not fall when sel changes");
 property rst4low;
 	(!rst_n) |-> (!clk_out);
 endproperty
-assert_rst_low: assert property (@(clk_out) rst4low);
+assert_rst_low: assert property (@(clk0) rst4low);
 
 endmodule

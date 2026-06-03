@@ -12,7 +12,7 @@
 TOP_MODULE = Clock_Switcher_tb
 
 # 仿真时间
-SIM_TIME = 1ms
+SIM_TIME = 10ms
 
 # 库名称
 LIB_NAME = work

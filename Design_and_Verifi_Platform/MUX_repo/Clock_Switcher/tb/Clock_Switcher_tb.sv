@@ -5,9 +5,7 @@
  * Type         : Testbench
  * tool         : Modelsim
  * Description  : 
- * 				1. 0Insert_short_description_here0
- * 				2. 0Insert_short_description_here0
- * 				3. 0Insert_short_description_here0
+ * 				none
  * 
  * Revision History:
  * -----------------------------------------------------------------------------
@@ -83,13 +81,13 @@ endtask
 
 task long_random_delay();
 	int i;
-	i = $urandom_range(1, 200);
+	i = $urandom_range(100, 200);
 	repeat(i) #1;
 endtask
 
 task short_random_delay();
 	int i;
-	i = $urandom_range(1, 50);
+	i = $urandom_range(20, 60);
 	repeat(i) #1;
 endtask
 
@@ -100,21 +98,21 @@ task flash_random_delay();
 endtask
 
 /*============================= Driver package task ===============================*/
-task long_delay_sel(int n);
+task long_delay_sel(integer n);
 	repeat(n) begin
 		random_sel();
 		long_random_delay();
 	end
 endtask
 
-task short_delay_sel(int n);
+task short_delay_sel(integer n);
 	repeat(n) begin
 		random_sel();
 		short_random_delay();
 	end
 endtask
 
-task flash_delay_sel(int n);
+task flash_delay_sel(integer n);
 	repeat(n) begin
 		random_sel();
 		flash_random_delay();
@@ -123,15 +121,15 @@ endtask
 
 /*================================= Case task ====================================*/
 task long_delay_case();
-	long_delay_sel(50);
+	long_delay_sel(10000);
 endtask
 
 task short_delay_case();
-	short_delay_sel(100);
+	short_delay_sel(10000);
 endtask
 
 task flash_delay_case();
-	flash_delay_sel(1000);
+	flash_delay_sel(10000);
 endtask
 
 /*================================== Main Code ===================================*/
@@ -141,6 +139,7 @@ initial begin
 	@(init_sig);
 	-> simulation_next;
 	long_delay_case();
+	#10
 	-> simulation_next;
 	short_delay_case();
 	-> simulation_next;
