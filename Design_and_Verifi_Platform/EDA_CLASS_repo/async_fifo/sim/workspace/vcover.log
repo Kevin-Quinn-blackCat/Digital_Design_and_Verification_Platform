@@ -1,0 +1,11 @@
+Model Technology ModelSim SE-64 vcover 10.4 Coverage Utility 2014.12 Dec  3 2014
+Start time: 17:15:08 on Jun 14,2026
+vcover merge ../output/cov/merged_cov.ucdb ../output/cov/fifo_full_empty_test.ucdb ../output/cov/fifo_mixed_test.ucdb ../output/cov/fifo_extreme_test.ucdb ../output/cov/fifo_vibration_test.ucdb 
+Merging file ../output/cov/fifo_full_empty_test.ucdb
+Merging file ../output/cov/fifo_mixed_test.ucdb
+Merging file ../output/cov/fifo_extreme_test.ucdb
+Merging file ../output/cov/fifo_vibration_test.ucdb
+Writing merged result to ../output/cov/merged_cov.ucdb
+
+End time: 17:15:08 on Jun 14,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
